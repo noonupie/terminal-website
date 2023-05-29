@@ -1,0 +1,89 @@
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: monospace;
+    margin: 0;
+    padding: 0;
+}
+
+.terminal {
+    width: 600px;
+    height: 400px;
+    background-color: #000;
+    border-radius: 5px;
+    margin: 50px auto;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    position: relative;
+}
+
+.terminal-header {
+    height: 25px;
+    background-color: #222;
+    padding: 5px;
+}
+
+.terminal-button {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.terminal-button-red {
+    background-color: #ff5f56;
+}
+
+.terminal-button-yellow {
+    background-color: #ffbd2e;
+}
+
+.terminal-button-green {
+    background-color: #27c93f;
+}
+
+.terminal-body {
+    height: calc(100% - 25px);
+    padding: 10px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+.terminal-prompt {
+    color: #0f0;
+}
+
+.terminal-username {
+    color: #0ff;
+}
+
+.terminal-current-dir {
+    color: #fff;
+}
+
+.terminal-cursor {
+    display: inline-block;
+    background-color: #fff;
+    width: 6px;
+    height: 15px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.terminal-output {
+    color: #fff;
+    margin-top: 10px;
+}
+
