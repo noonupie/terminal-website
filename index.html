@@ -1,27 +1,42 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Terminal Website</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-    <div class="terminal">
-        <div class="terminal-header">
-            <span class="terminal-button terminal-button-red"></span>
-            <span class="terminal-button terminal-button-yellow"></span>
-            <span class="terminal-button terminal-button-green"></span>
-        </div>
-        <div class="terminal-body">
-            <div class="terminal-prompt">
-                <span class="terminal-username">guest@website:</span>
-                <span class="terminal-current-dir">~</span>
-                <span class="terminal-cursor"></span>
-            </div>
-            <div class="terminal-output">
-                <p>Welcome to my terminal-style website!</p>
-            </div>
-        </div>
-    </div>
-    <script src="main.js"></script>
-</body>
-</html>
+document.addEventListener("DOMContentLoaded", function() {
+  var terminalOutput = document.querySelector(".terminal-output");
+  var terminalPrompt = document.querySelector(".terminal-prompt");
+  var terminalInput = document.createElement("input");
+  terminalInput.type = "text";
+  terminalPrompt.appendChild(terminalInput);
+  terminalInput.focus();
+
+  terminalInput.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      var command = terminalInput.value;
+      var commandElement = document.createElement("p");
+      commandElement.textContent = "> " + command;
+      var outputElement = document.createElement("p");
+      terminalInput.value = "";
+
+      if (command === "help") {
+        outputElement.textContent = "Available commands: help, about, contact, time, date, clear";
+      } else if (command === "about") {
+        outputElement.textContent = "This is a terminal-style website created using HTML, CSS, and JavaScript.";
+      } else if (command === "contact") {
+        outputElement.textContent = "You can reach us at contact@example.com.";
+      } else if (command === "time") {
+        var currentTime = new Date().toLocaleTimeString();
+        outputElement.textContent = "Current time is: " + currentTime;
+      } else if (command === "date") {
+        var currentDate = new Date().toLocaleDateString();
+        outputElement.textContent = "Today's date is: " + currentDate;
+      } else if (command === "clear") {
+        terminalOutput.innerHTML = "";
+        return;
+      } else {
+        outputElement.textContent = "Command not found. Type 'help' to see available commands.";
+      }
+
+      terminalOutput.appendChild(commandElement);
+      terminalOutput.appendChild(outputElement);
+      terminalOutput.scrollTop = terminalOutput.scrollHeight;
+    }
+  });
+});
